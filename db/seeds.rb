@@ -28,6 +28,9 @@ puts "Creating Lists.."
 12.times do |i|
   list = List.create!(name: "#{descs[i]}")
   lists << list
+
+  file = File.open("public/images/poster#{i + 1}.jpg")
+  list.photo.attach(io: file, filename: "")
   puts "##{i} done"
 end
 puts "Lists done!"

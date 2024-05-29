@@ -7,6 +7,7 @@
   margin: 30px;
   padding-top: 70px;
   font-size: 20px;
-  border: 1px solid grey;
-  background-image: "../../images/poster1.jpg";
+  background-image: asset-url("poster1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -1,0 +1,28 @@
+<nav class="navtop">
+  <%= link_to "BMDB", lists_path, class:"navbar-brand" %>
+  <div>
+  <%= link_to "home", lists_path, class:"navbar-brand" %>
+  |
+  <%= link_to "lists", lists_path, class:"navbar-brand" %>
+  |
+  <%= link_to "new list", lists_path, class:"navbar-brand" %>
+  |
+  <%= link_to "feedback", lists_path, class:"navbar-brand" %>
+  </div>
+  <i class="fa-solid fa-film"></i>
+</nav>
+
+<div class="banner">
+</div>
+
+<div class="heading">
+  <h3>Lists my lists</h3>
+</div>
+
+<div class="main">
+  <% @lists.each do |list| %>
+  <div class="card">
+    <%= link_to list.name, list_path(list) %>
+  </div>
+  <% end %>
+</div>

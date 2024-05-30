@@ -19,6 +19,14 @@
   <h3><%= @list.name %></h3>
 </div>
 
-<div class="main">
-  <p>Content here</p>
+<div class="main-show">
+  <% @list.movies.each do |movie| %>
+    <div class="card card-movie">
+      <div class="movie-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= movie.poster_url %>)">
+      </div>
+      <div class="movie-text">
+        <p><%= movie.title %></p>
+      </div>
+    </div>
+  <% end %>
 </div>

@@ -10,6 +10,7 @@ gem "simple_form"
 gem "sassc-rails"
 gem "faker"
 gem "cloudinary"
+gem "skylight"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.3"

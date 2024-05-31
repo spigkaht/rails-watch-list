@@ -1,31 +1,35 @@
-<nav class="navtop">
-  <%= link_to "BMDB", lists_path, class:"navbar-brand" %>
-  <div>
-  <%= link_to "home", lists_path, class:"navbar-brand" %>
-  |
-  <%= link_to "lists", lists_path, class:"navbar-brand" %>
-  |
-  <%= link_to "new list", lists_path, class:"navbar-brand" %>
-  |
-  <%= link_to "feedback", lists_path, class:"navbar-brand" %>
-  </div>
-  <i class="fa-solid fa-film"></i>
-</nav>
-
-<div class="banner">
-</div>
-
 <div class="heading">
   <h3><%= @list.name %></h3>
 </div>
 
+<div class="movie-add">
+  <%= link_to "add a movie", new_list_bookmark_path(@list), class: "btn btn-success" %>
+</div>
+
 <div class="main-show">
-  <% @list.movies.each do |movie| %>
+  <% @list.bookmarks.each do |bookmark| %>
     <div class="card card-movie">
-      <div class="movie-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= movie.poster_url %>)">
+      <div class="movie-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= bookmark.movie.poster_url %>)">
       </div>
       <div class="movie-text">
-        <p><%= movie.title %></p>
+        <div class="movie-title">
+          <h4><strong><%= bookmark.movie.title %></strong></h4>
+          <h4>&centerdot;</h4>
+          <h5><%= bookmark.movie.rating.round(1) %></h5>
+          <i class="fa-solid fa-star fa-xl"></i>
+        </div>
+        <p><%= bookmark.movie.overview %></p>
+        <div class="movie-quote">
+          <i class="fa-solid fa-angles-right"></i>
+          <p class="movie-quote-text">
+            <%= bookmark.comment %>
+          </p>
+          <%= link_to "delete",
+            bookmark_path(bookmark),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+            class: "button-delete"
+          %>
+        </div>
       </div>
     </div>
   <% end %>

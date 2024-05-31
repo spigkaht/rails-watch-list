@@ -38,5 +38,7 @@ module RailsWatchList
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.skylight.environments += ["development", "staging"]
   end
 end

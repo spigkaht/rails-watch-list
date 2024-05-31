@@ -8,13 +8,21 @@
   margin: 0 auto;
 }
 
+.movie-add {
+  width: 90vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.movie-add .btn {
+  color: white;
+  border-radius: 5px;
+  margin-bottom: -20px;
+}
+
 .movie-image {
   width: 100%;
   height: 60%;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.movie-text {
-  margin-top: 50px;
 }

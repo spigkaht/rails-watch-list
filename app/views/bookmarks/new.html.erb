@@ -2,8 +2,10 @@
   <h3><%= @list.name %></h3>
 </div>
 
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.input :comment %>
-  <%= f.association :movie %>
-  <%= f.submit %>
-<% end %>
+<div class="container w-25 mt-4 p-3 border">
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment, as: :text %>
+    <%= f.association :movie %>
+    <%= f.submit %>
+  <% end %>
+</div>

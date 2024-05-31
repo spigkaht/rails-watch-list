@@ -1,6 +1,8 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
+    @movies = Movie.all
+    @bookmark = Bookmark.new
   end
 
   def show

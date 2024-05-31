@@ -2,10 +2,25 @@
   <h3>Lists my lists</h3>
 </div>
 
+
 <div class="main-index">
   <% @lists.each do |list| %>
     <div class="card card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 600, crop: :limit %>')">
       <%= link_to list.name, list_path(list), class: "card-title" %>
     </div>
   <% end %>
+</div>
+
+<hr>
+
+<div class="form-contain">
+  <div class="form-index">
+    <h3>Add a Movie to a List</h3>
+    <%= simple_form_for(@bookmark) do |f| %>
+      <%= f.input :list_id, collection: @lists %>
+      <%= f.input :movie_id, collection: @movies %>
+      <%= f.input :comment, as: :text %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 </div>

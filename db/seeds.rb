@@ -18,10 +18,6 @@ Movie.destroy_all
 movies = []
 lists = []
 
-uri = "https://tmdb.lewagon.com/movie/top_rated"
-html_file = URI.open(uri).read
-srlzd = JSON.parse(html_file)
-
 descs = ["Laughs", "Feels", "Really Feels", "Bang Bang", "Alex Lives Here", "Bruce Willis?", "Science is Golden", "Just Tolkien", "Tuesday Nights", "Weird Shit", "For Dog", "Wes Anderson 4EVA"]
 
 puts "Creating Lists.."
@@ -36,6 +32,10 @@ end
 puts "Lists done!"
 
 puts "Creating movies.."
+uri = "https://tmdb.lewagon.com/movie/top_rated"
+html_file = URI.open(uri).read
+srlzd = JSON.parse(html_file)
+
 18.times do |i|
   result = srlzd["results"][i]
   title = result["title"]
@@ -47,12 +47,30 @@ puts "Creating movies.."
   movies << movie
   puts "##{i} done"
 end
+
+uri = "https://tmdb.lewagon.com/movie/popular"
+html_file = URI.open(uri).read
+srlzd = JSON.parse(html_file)
+
+18.times do |x|
+  result = srlzd["results"][x]
+  title = result["title"]
+  overview = result["overview"]
+  overview = "No overview provided" if overview == ""
+  poster = result["poster_path"]
+  rating = result["vote_average"]
+  poster_url = "https://image.tmdb.org/t/p/w500#{poster}"
+  movie = Movie.create!(title: title, overview: overview, poster_url: poster_url, rating: rating)
+  movies << movie
+  puts "##{x} done"
+end
 puts "All movies added!"
 
 puts "Creating bookmarks.."
-10.times do |i|
+100.times do |i|
   comment = Faker::Fantasy::Tolkien.poem
-  Bookmark.create!(comment: comment, movie: movies.sample, list: lists.sample)
+  bookmark = Bookmark.create(comment: comment, movie: movies.sample, list: lists.sample)
+  bookmark.save
   puts "##{i} done"
 end
 puts "All bookmarks added!"
